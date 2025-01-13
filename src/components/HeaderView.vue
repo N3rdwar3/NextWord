@@ -3,9 +3,9 @@
 </script>
 
 <template>
-<header class="bg-white">
-  This is a head
-</header>
+<div class="bg-dark text-white text-xl font-serif text-center">
+  NextWord
+</div>
 </template>
 
 <style scoped>

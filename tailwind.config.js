@@ -12,7 +12,13 @@ module.exports = {
         sans: ['Figtree', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        ...colors
+        transparent: 'transparent',
+        current: 'currentColor',
+        'primary': '#9FD8CB',
+        'secondary': '#CACFD6',
+        'tertiary': '#517664',
+        'dark': '#2D3319',
+        'light': '#D6E5E3'
       }
     }
   },
