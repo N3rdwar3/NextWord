@@ -1,5 +1,7 @@
 <script setup>
 
+import LetterTile from "@/components/LetterTile.vue";
+import WordLetterTile from "@/components/WordLetterTile.vue";
 </script>
 
 <template>
@@ -15,51 +17,43 @@
     </ul>
   </section>
   <section class="flex flex-col flex-grow-1 gap-2">
-    <div class="flex justify-between gap-2 rounded-sm">
-      <button class="bg-primary rounded-lg p-2 text-lg">Add</button>
-      <button class="bg-secondary rounded-lg p-2 text-lg">Remove</button>
-      <button class="bg-tertiary rounded-lg p-2 text-lg">Swap</button>
-    </div>
     <div class="flex flex-grow items-center justify-between font-mono gap-2">
-      <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">T</div>
-      <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">H</div>
-      <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">E</div>
-      <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">M</div>
-      <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">E</div>
-    </div>
-    <div class="w-full">
-      <button class="bg-primary rounded-lg w-full p-2 text-lg">Submit</button>
+      <WordLetterTile letter="T"></WordLetterTile>
+      <WordLetterTile letter="H"></WordLetterTile>
+      <WordLetterTile letter="E"></WordLetterTile>
+      <WordLetterTile letter="M"></WordLetterTile>
+      <WordLetterTile letter="E"></WordLetterTile>
     </div>
   </section>
 </div>
 <div class="flex mt-2 bg-dark p-2 max-w-md text-black">
   <section class="flex flex-wrap gap-2 justify-around">
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">A</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">B</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">C</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">D</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">E</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">F</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">G</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">H</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">I</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">J</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">K</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">L</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">M</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">N</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">O</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">P</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">Q</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">R</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">S</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">T</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">U</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">V</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">W</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">X</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">Y</div>
-    <div class="bg-secondary rounded-lg p-2 text-lg w-12 text-center">Z</div>
+    <LetterTile letter="A"></LetterTile>
+    <LetterTile letter="B"></LetterTile>
+    <LetterTile letter="C"></LetterTile>
+    <LetterTile letter="D"></LetterTile>
+    <LetterTile letter="E"></LetterTile>
+    <LetterTile letter="F"></LetterTile>
+    <LetterTile letter="G"></LetterTile>
+    <LetterTile letter="H"></LetterTile>
+    <LetterTile letter="I"></LetterTile>
+    <LetterTile letter="J"></LetterTile>
+    <LetterTile letter="K"></LetterTile>
+    <LetterTile letter="L"></LetterTile>
+    <LetterTile letter="M"></LetterTile>
+    <LetterTile letter="N"></LetterTile>
+    <LetterTile letter="O"></LetterTile>
+    <LetterTile letter="P"></LetterTile>
+    <LetterTile letter="Q"></LetterTile>
+    <LetterTile letter="R"></LetterTile>
+    <LetterTile letter="S"></LetterTile>
+    <LetterTile letter="T"></LetterTile>
+    <LetterTile letter="U"></LetterTile>
+    <LetterTile letter="V"></LetterTile>
+    <LetterTile letter="W"></LetterTile>
+    <LetterTile letter="X"></LetterTile>
+    <LetterTile letter="Y"></LetterTile>
+    <LetterTile letter="Z"></LetterTile>
 
   </section>
 </div>
