@@ -1,1 +1,3 @@
 #TODO remove the buttons 'add, remove, submit, swap'
+#TODO support drag and drop
+#TODO develop game state (Pinia)

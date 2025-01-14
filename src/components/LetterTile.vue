@@ -14,5 +14,16 @@ defineProps({
 </template>
 
 <style scoped>
-
+  .letter-tile {
+    transition: all 300ms ease;
+  }
+  .active {
+    background: green;
+  }
+  .shuffleLeft {
+    margin-right: 2px;
+  }
+  .shuffleRight {
+    margin-left: 2px;
+  }
 </style>
