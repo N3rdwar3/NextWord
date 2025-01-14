@@ -10,6 +10,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+        title: ['Aclonica', ...defaultTheme.fontFamily.sans],
+        wood: ['Allerta Stencil', ...defaultTheme.fontFamily.sans]
       },
       colors: {
         transparent: 'transparent',

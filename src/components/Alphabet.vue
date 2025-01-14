@@ -48,7 +48,7 @@ let dragEnd = (e) => {
 
 <template>
   <div
-      class="flex mt-2 bg-dark p-2 max-w-md text-black"
+      class="flex p-2 max-w-md rounded-lg"
   >
     <section class="flex flex-wrap gap-2 justify-around">
       <LetterTile

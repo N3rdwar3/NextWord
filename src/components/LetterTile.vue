@@ -6,19 +6,20 @@ defineProps({
 
 <template>
   <div
-      class="letter-tile bg-orange-200 border-b-4 border-b-orange-950 border-l-4 border-l-orange-600 p-2 text-lg w-12 text-center"
-      v-text="letter"
+      class="flex justify-center text-black letter-tile wood-texture bg-orange-300 border-b-4 border-b-orange-950 border-l-2 border-l-orange-900 w-16 h-16 text-center"
       draggable="true"
   >
+    <span class="relative w-full">{{ letter }}</span>
   </div>
 </template>
 
 <style scoped>
   .letter-tile {
     transition: all 300ms ease;
+    font-size: 2.5rem;
   }
   .active {
-    background: green;
+    background-color: lightgreen;
   }
   .shuffleLeft {
     margin-right: 2px;

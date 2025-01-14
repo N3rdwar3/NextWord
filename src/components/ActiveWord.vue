@@ -51,7 +51,7 @@ let dragEnd = (e) => {
 <template>
   <div
       id="active-word"
-      class="flex flex-grow items-center justify-center font-mono gap-2"
+      class="flex flex-grow items-center justify-center gap-2 bg-light p-2"
   >
     <LetterTile
       v-for="(letter, index) in store.activeWord"

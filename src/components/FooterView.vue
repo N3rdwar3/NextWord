@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<div class="bg-dark">
+<div class="">
   Worlds most informative footer
 </div>
 </template>

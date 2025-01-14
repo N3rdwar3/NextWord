@@ -5,7 +5,7 @@ import FooterView from "@/components/FooterView.vue";
 </script>
 
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col bg-gray-800 p-2 rounded-lg border-white ">
     <header>
       <HeaderView/>
     </header>
