@@ -1,7 +1,6 @@
 <script setup>
 import {useGameStateStore} from "@/stores/gameStateStore.js";
 let store = useGameStateStore();
-
 let dragOver = (e) => {
   if(! store.trashDisabled){
     e.preventDefault();

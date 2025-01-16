@@ -9,7 +9,7 @@ defineProps({
       class="flex justify-center text-black letter-tile wood-texture bg-orange-300 border-b-4 border-b-orange-950 border-l-2 border-l-orange-900 w-16 h-16 text-center"
       draggable="true"
   >
-    <span class="relative w-full">{{ letter }}</span>
+    {{ letter }}
   </div>
 </template>
 

@@ -8,7 +8,8 @@ export let useGameStateStore = defineStore('game', {
             startWord: 'THE',
             wordPath: ['THE'],
             trashDisabled: true,
-            authoursBest: 5
+            authorsBest: 5,
+            activeIndex: null
         }
     },
     actions: {
@@ -23,6 +24,7 @@ export let useGameStateStore = defineStore('game', {
                 }
             }
             this.activeWord = newWord;
+            this.activeIndex = null;
             this.wordPath.push(this.activeWord);
         },
         // add a letter to the word at the given index
@@ -39,6 +41,7 @@ export let useGameStateStore = defineStore('game', {
                 newWord += newLetter;
             }
             this.activeWord = newWord;
+            this.activeIndex = null;
             this.wordPath.push(this.activeWord);
         },
         remove(index) {
@@ -50,6 +53,7 @@ export let useGameStateStore = defineStore('game', {
                 newWord += this.activeWord[i];
             }
             this.activeWord = newWord;
+            this.activeIndex = null;
             this.wordPath.push(this.activeWord);
         }
     },

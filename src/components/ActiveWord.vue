@@ -1,69 +1,25 @@
 <script setup>
-import LetterTile from "@/components/LetterTile.vue";
+import ActiveWordLetterTile from "@/components/ActiveWordLetterTile.vue";
 import {useGameStateStore} from "@/stores/gameStateStore.js";
+import {ref} from "vue";
+
 let store = useGameStateStore();
-let activeIndex = null;
-let dragStart = (e, index) => {
-  e.dataTransfer.setData('text/plain', index)
-  e.target.classList.toggle('active');
-  store.trashDisabled = false;
-}
 
-let dropped = (e) => {
-  store.add(activeIndex, e.dataTransfer.getData('text/plain'));
-}
-let dragOver = (e) => {
-  e.preventDefault();
-  const hostRect = e.target.getBoundingClientRect();
-  const hostX = hostRect.left + (hostRect.right-hostRect.left)/2;
-  if(e.clientX > hostX){
-    // make this element move to the left to make space
-    activeIndex = parseInt(e.target.dataset.index,10)+1;
-    e.target.classList.add('shuffleLeft');
-    e.target.classList.remove('shuffleRight');
-    // if this element has a sibling to the right make it shuffle to the right
-    if(activeIndex < e.target.parentElement.children.length - 1){
-      e.target.nextElementSibling.classList.add('shuffleRight');
-      e.target.nextElementSibling.classList.remove('shuffleLeft');
-    }
-  } else {
-    // make this element move to the right to make space
-    activeIndex = parseInt(e.target.dataset.index, 10);
-    e.target.classList.add('shuffleRight');
-    e.target.classList.remove('shuffleLeft');
-    // if this element has a sibling to the left make it shuffle to the left
-    if(activeIndex > 0) {
-      e.target.previousElementSibling.classList.add('shuffleLeft');
-      e.target.previousElementSibling.classList.remove('shuffleRight');
-    }
-  }
-}
-let dragEnter = (e) => {
-}
-let dragLeave = (e) => {
-}
-let dragEnd = (e) => {
-  e.target.classList.remove('active');
-  store.trashDisabled = true;
-}
 </script>
-
 <template>
   <div
       id="active-word"
-      class="flex flex-grow items-center justify-center gap-2 bg-light p-2"
+      class="flex flex-grow items-center justify-center gap-2 p-2 border-b-2 border-light"
   >
-    <LetterTile
-      v-for="(letter, index) in store.activeWord"
-      :key="index"
-      :data-index="index"
-      :letter="letter"
-      @dragstart="(e) => {dragStart(e, index)}"
-      @dragend="dragEnd"
-      @drop="dropped"
-      @dragover="dragOver"
-      @dragenter="dragEnter"
-      @dragleave="dragLeave"
+    <ActiveWordLetterTile
+        v-for="(letter, index) in store.activeWord"
+        :key="index"
+        :dataIndex="index"
+        :index="index"
+        :letter="letter"
+        :class="{
+          'active': store.activeIndex === index
+        }"
     />
   </div>
 </template>
