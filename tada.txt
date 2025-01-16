@@ -4,3 +4,6 @@
 #TODO Change UI for deleting
 #TODO dynamically call callbacks in store.modify
 #TODO make tiles pretty
+#TODO dont allow dragging an active letter word around in the active letters (this was done for alphabet already but maybe change styling to make more obvious)
+#TODO VERIFY NEW WORDS ARE VALID WORDS (dictionary not done yet)
+#TODO build header

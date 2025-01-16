@@ -23,7 +23,3 @@ import WordPath from "@/components/WordPath.vue";
     </section>
   </div>
 </template>
-
-<style scoped>
-
-</style>

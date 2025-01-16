@@ -1,7 +1,6 @@
 <script setup>
 import HeaderView from '@/components/HeaderView.vue';
 import GameView from '@/components/GameView.vue';
-import FooterView from "@/components/FooterView.vue";
 </script>
 
 <template>
@@ -12,9 +11,6 @@ import FooterView from "@/components/FooterView.vue";
     <main>
       <GameView/>
     </main>
-    <footer>
-      <FooterView/>
-    </footer>
   </div>
 </template>
 
