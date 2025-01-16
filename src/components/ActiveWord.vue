@@ -1,7 +1,6 @@
 <script setup>
 import ActiveWordLetterTile from "@/components/ActiveWordLetterTile.vue";
 import {useGameStateStore} from "@/stores/gameStateStore.js";
-import {ref} from "vue";
 
 let store = useGameStateStore();
 

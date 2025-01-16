@@ -10,45 +10,43 @@ defineProps({
 })
 
 let store = useGameStateStore();
-let activeIndex = null;
 
 let dragStart = (e, index) => {
-  e.dataTransfer.setData('text/plain', index)
-  e.target.classList.toggle('active');
+  store.activeIndex = index;
   store.trashDisabled = false;
 }
 
-let dropped = (e) => {
-  store.add(activeIndex, e.dataTransfer.getData('text/plain'));
+let droppedOn = (e) => {
+  store.add(store.activeIndex, e.dataTransfer.getData('text/plain'));
 }
-let dragOver = (e) => {
+let draggedOver = (e) => {
   e.preventDefault();
   const hostRect = e.target.getBoundingClientRect();
   const hostX = hostRect.left + (hostRect.right-hostRect.left)/2;
   if(+(e.clientX) > hostX){
     // make this element move to the left to make space
-    activeIndex = +(e.target.getAttribute('data-index'))+1;
+    store.activeIndex = +(e.target.getAttribute('data-index'))+1;
     e.target.classList.add('shuffleLeft');
     e.target.classList.remove('shuffleRight');
     // if this element has a sibling to the right make it shuffle to the right
-    if(activeIndex < e.target.parentElement.children.length - 1){
+    if(store.activeIndex < e.target.parentElement.children.length - 1){
       e.target.nextElementSibling.classList.add('shuffleRight');
       e.target.nextElementSibling.classList.remove('shuffleLeft');
     }
   } else {
     // make this element move to the right to make space
-    activeIndex = +(e.target.getAttribute('data-index'));
+    store.activeIndex = +(e.target.getAttribute('data-index'));
     e.target.classList.add('shuffleRight');
     e.target.classList.remove('shuffleLeft');
     // if this element has a sibling to the left make it shuffle to the left
-    if(activeIndex > 0) {
+    if(store.activeIndex > 0) {
       e.target.previousElementSibling.classList.add('shuffleLeft');
       e.target.previousElementSibling.classList.remove('shuffleRight');
     }
   }
 }
 let dragEnd = (e) => {
-  e.target.classList.remove('active');
+  store.activeIndex = null;
   store.trashDisabled = true;
 }
 
@@ -60,8 +58,8 @@ let dragEnd = (e) => {
     <LetterTile
         @dragstart="(e) => {dragStart(e, index)}"
         @dragend="dragEnd"
-        @drop="dropped"
-        @dragover="dragOver"
+        @drop="droppedOn"
+        @dragover="draggedOver"
         @click="() => {store.activeIndex = store.activeIndex === index ? null: index}"
         :letter="letter"
         :data-index="dataIndex"

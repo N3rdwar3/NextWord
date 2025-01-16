@@ -11,17 +11,13 @@ let toggleReplacement = (e) => {
   const elem = e.target;
   elem.classList.toggle('active');
 }
-let dragOver = (e) => {
+let draggedOver = (e) => {
   e.preventDefault();
 }
-let dropped = (e) => {
+let droppedOn = (e, letter) => {
   // get which tile we were dealing with from the active word
   e.preventDefault();
-  console.log(e.dataTransfer.getData('text/plain')); // This should be index when from active, letter when from alphabet
-  console.log(e.target.innerText); // letter dropped on
-  if(!isNaN(e.dataTransfer.getData('text/plain'))){
-    store.replace(e.dataTransfer.getData('text/plain'), e.target.innerText );
-  }
+  store.replace(store.activeIndex, letter );
   e.target.classList.remove('active');
 }
 
@@ -49,8 +45,8 @@ let dragEnd = (e) => {
 <template>
   <LetterTile
       :letter="letter"
-      @drop="dropped"
-      @dragover="dragOver"
+      @drop="(e) => {droppedOn(e,letter)}"
+      @dragover="draggedOver"
       @dragenter="toggleReplacement"
       @dragleave="toggleReplacement"
       @dragstart="(e) => {dragStart(e,letter)}"
