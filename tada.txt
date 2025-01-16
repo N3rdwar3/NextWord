@@ -1,3 +1,6 @@
 #TODO remove the buttons 'add, remove, submit, swap'
 #TODO support drag and drop
 #TODO develop game state (Pinia)
+#TODO Change UI for deleting
+#TODO dynamically call callbacks in store.modify
+#TODO make tiles pretty

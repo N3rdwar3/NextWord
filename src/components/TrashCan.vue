@@ -13,7 +13,7 @@ let dragLeave = (e) => {
   // make trash can stop shaking?
 }
 let dropped = (e) => {
-  store.remove(e.dataTransfer.getData('text/plain'))
+  store.modify('remove', {'index': store.activeIndex});
 }
 </script>
 

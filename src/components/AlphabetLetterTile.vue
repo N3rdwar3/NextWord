@@ -17,7 +17,12 @@ let draggedOver = (e) => {
 let droppedOn = (e, letter) => {
   // get which tile we were dealing with from the active word
   e.preventDefault();
-  store.replace(store.activeIndex, letter );
+  store.modify("replace",
+      {
+        'index': store.activeIndex,
+        'letter': letter
+      }
+  );
   e.target.classList.remove('active');
 }
 
@@ -51,7 +56,7 @@ let dragEnd = (e) => {
       @dragleave="toggleReplacement"
       @dragstart="(e) => {dragStart(e,letter)}"
       @dragend="dragEnd"
-      @click="store.replace(store.activeIndex, letter)"
+      @click="store.modify('replace', {'index': store.activeIndex, 'letter': letter})"
   />
 
 </template>

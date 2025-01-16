@@ -17,10 +17,11 @@ let dragStart = (e, index) => {
 }
 
 let droppedOn = (e) => {
-  store.add(store.activeIndex, e.dataTransfer.getData('text/plain'));
+  store.modify('add', {'index': store.activeIndex, 'letter': e.dataTransfer.getData('text/plain')});
 }
 let draggedOver = (e) => {
   e.preventDefault();
+
   const hostRect = e.target.getBoundingClientRect();
   const hostX = hostRect.left + (hostRect.right-hostRect.left)/2;
   if(+(e.clientX) > hostX){
