@@ -9,7 +9,9 @@ export let useGameStateStore = defineStore('game', {
             wordPath: ['THE'],
             trashDisabled: true,
             authorsBest: 5,
-            activeIndex: null
+            activeIndex: null,
+            draggingActiveTile: false,
+            draggingAlphabetTile: false
         }
     },
     actions: {

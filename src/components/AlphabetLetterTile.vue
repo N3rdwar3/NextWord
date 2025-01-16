@@ -8,6 +8,10 @@ defineProps({
   letter: String
 })
 let toggleReplacement = (e) => {
+  // dont interact with other alphabet tiles
+  if(store.draggingAlphabetTile === true){
+    return;
+  }
   const elem = e.target;
   elem.classList.toggle('active');
 }
@@ -17,6 +21,10 @@ let draggedOver = (e) => {
 let droppedOn = (e, letter) => {
   // get which tile we were dealing with from the active word
   e.preventDefault();
+  // dont interact with other alphabet tiles
+  if(store.draggingAlphabetTile === true){
+    return;
+  }
   store.modify("replace",
       {
         'index': store.activeIndex,
@@ -29,6 +37,7 @@ let droppedOn = (e, letter) => {
 let dragStart = (e, letter) => {
   e.dataTransfer.setData('text/plain', letter);
   e.target.classList.toggle('active');
+  store.draggingAlphabetTile = true;
 }
 
 let dragEnd = (e) => {
@@ -43,7 +52,7 @@ let dragEnd = (e) => {
       elem.classList.remove('shuffleLeft');
     }
   }, 200);
-
+  store.draggingAlphabetTile = false;
 };
 </script>
 

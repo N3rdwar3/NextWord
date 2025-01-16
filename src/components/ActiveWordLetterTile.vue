@@ -14,14 +14,27 @@ let store = useGameStateStore();
 let dragStart = (e, index) => {
   store.activeIndex = index;
   store.trashDisabled = false;
+  store.draggingActiveTile = true;
 }
-
+let dragLeave = (e) => {
+  if(store.draggingActiveTile){
+    return;
+  }
+  store.activeIndex = null;
+}
 let droppedOn = (e) => {
+  // dont interact with other active tiles
+  if(store.draggingActiveTile){
+    return;
+  }
   store.modify('add', {'index': store.activeIndex, 'letter': e.dataTransfer.getData('text/plain')});
 }
 let draggedOver = (e) => {
   e.preventDefault();
-
+  // dont interact with other active tiles
+  if(store.draggingActiveTile){
+    return;
+  }
   const hostRect = e.target.getBoundingClientRect();
   const hostX = hostRect.left + (hostRect.right-hostRect.left)/2;
   if(+(e.clientX) > hostX){
@@ -49,6 +62,7 @@ let draggedOver = (e) => {
 let dragEnd = (e) => {
   store.activeIndex = null;
   store.trashDisabled = true;
+  store.draggingActiveTile = false;
 }
 
 
@@ -59,6 +73,7 @@ let dragEnd = (e) => {
     <LetterTile
         @dragstart="(e) => {dragStart(e, index)}"
         @dragend="dragEnd"
+        @dragleave="dragLeave"
         @drop="droppedOn"
         @dragover="draggedOver"
         @click="() => {store.activeIndex = store.activeIndex === index ? null: index}"
