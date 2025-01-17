@@ -1,14 +1,21 @@
 <script setup>
 import {useGameStateStore} from "@/stores/gameStateStore.js";
-let store=useGameStateStore();
+import RoundButton from "@/components/RoundButton.vue";
+
+let store = useGameStateStore();
 </script>
 
 <template>
-<div class="flex justify-center flex-col text-white font-serif text-center">
-  <span class="font-title">NextWord</span>
-  <h1 class="mt-4 mb-1 text-lg">{{ store.finalWord }}</h1>
-  <h5 class="text-lg">Author's Best: {{ store.authorsBest }}</h5>
-</div>
+  <div class="flex flex-row-reverse">
+    <RoundButton
+      @click="$emit('openModal')"
+    >?</RoundButton>
+  </div>
+  <div class="flex justify-center flex-col text-white font-serif text-center">
+    <span class="font-title">NextWord</span>
+    <h1 class="mt-4 mb-1 text-lg">{{ store.finalWord }}</h1>
+    <h5 class="text-lg">Author's Best: {{ store.authorsBest }}</h5>
+  </div>
 </template>
 
 <style scoped>

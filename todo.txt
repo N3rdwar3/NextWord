@@ -5,12 +5,12 @@
  - How long will it take to parse (170,000 words 17/18 searches max with Binary Search)
 
 #TODO develop a way to set and fetch new puzzles (decide if we care if people can access ones that aren't for today)
-#TODO add help button/dialog
-#TODO add first time user popup modal of help dialog
+#TODO populate help dialog
 #TODO flash messages on error or success of store.modify
 #TODO mobilize css
 #TODO mobilize drag and drop?
 #TODO make a logo
 #TODO dynamically generate alphabet
+#TODO after success fade tiles into wordlist animation style
 
 

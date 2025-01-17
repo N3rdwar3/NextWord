@@ -7,3 +7,4 @@
 #TODO dont allow dragging an active letter word around in the active letters (this was done for alphabet already but maybe change styling to make more obvious)
 #TODO VERIFY NEW WORDS ARE VALID WORDS (dictionary not done yet)
 #TODO build header
+#TODO add help button/dialog
