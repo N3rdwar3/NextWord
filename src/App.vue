@@ -16,8 +16,9 @@ let showModal = ref(false);
       <GameView/>
     </main>
   </div>
-
-  <HelpModal :showHelp="showModal" @closeModal="showModal = false"/>
+  <Teleport to="body">
+    <HelpModal :showHelp="showModal" @closeModal="showModal = false"/>
+  </Teleport>
 </template>
 
 <style scoped>
