@@ -69,7 +69,11 @@ let dragEnd = (e) => {
 </script>
 
 <template>
-
+  <Transition
+    enter-from-class="opacity-0"
+    enter-to-class="opacity-100"
+    enter-active-class="transition duration-300"
+  >
     <LetterTile
         @dragstart="(e) => {dragStart(e, index)}"
         @dragend="dragEnd"
@@ -79,9 +83,29 @@ let dragEnd = (e) => {
         @click="() => {store.activeIndex = store.activeIndex === index ? null: index}"
         :letter="letter"
         :data-index="dataIndex"
+        :class="{
+          'fade-out': store.animateOut,
+          'fade-in': store.animateIn
+        }"
     />
+  </Transition>
 </template>
 
 <style scoped>
 
+/* Fade out while moving */
+@keyframes fadeOutMove {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0px, -50px) scale(0.5); /* Move toward target and shrink */
+  }
+}
+
+.fade-out {
+  animation: fadeOutMove 300ms forwards;
+}
 </style>

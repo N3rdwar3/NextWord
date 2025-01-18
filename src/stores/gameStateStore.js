@@ -11,7 +11,11 @@ export let useGameStateStore = defineStore('game', {
             authorsBest: 5,
             activeIndex: null,
             draggingActiveTile: false,
-            draggingAlphabetTile: false
+            draggingAlphabetTile: false,
+            animateOut: false,
+            animateIn: false,
+            animateSuccessBackground: false,
+            animateFailureBackground: false
         }
     },
     actions: {
@@ -25,10 +29,20 @@ export let useGameStateStore = defineStore('game', {
             let candidateWord = this[callback](params);
             let {result, code} = this.checkIfWordIsValid(candidateWord);
             if (result === true) {
-                this.updateActiveWord(candidateWord)
+                this.animateOut=true;
+                this.animateSuccessBackground = true;
+                setTimeout(() => {
+                    this.animateOut = false;
+                    this.animateSuccessBackground = false;
+                    this.updateActiveWord(candidateWord)
+                }, 350)
+            } else {
+                this.animateFailureBackground = true;
+                setTimeout(() => {
+                    this.animateFailureBackground = false;
+                }, 350)
             }
             this.activeIndex = null;
-            this.flash(result, code);
         },
         // replace a letter in the active word at the given index
         replace(params) {
@@ -75,10 +89,6 @@ export let useGameStateStore = defineStore('game', {
                 newWord += this.activeWord[i];
             }
             return newWord;
-        },
-
-        flash(valid, code){
-            console.log('Code:', code);
         },
         // called from each of the modifiers to see if we have a valid new word to add to the list and update our active word
         checkIfWordIsValid(candidateWord) {

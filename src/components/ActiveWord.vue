@@ -9,6 +9,10 @@ let store = useGameStateStore();
   <div
       id="active-word"
       class="flex flex-grow items-center justify-center gap-2 p-2 border-b-2 border-light"
+      :class="{
+        'animate-success-background': store.animateSuccessBackground === true,
+        'animate-failure-background': store.animateFailureBackground === true
+      }"
   >
     <ActiveWordLetterTile
         v-for="(letter, index) in store.activeWord"
@@ -17,8 +21,41 @@ let store = useGameStateStore();
         :index="index"
         :letter="letter"
         :class="{
-          'active': store.activeIndex === index
+          'active': store.activeIndex === index,
         }"
     />
   </div>
 </template>
+<style scoped>
+/* Flash a success */
+@keyframes successFlash {
+  0% {
+    background: unset;
+  }
+  50% {
+    background: lightgreen;
+  }
+  100% {
+    background: unset;
+  }
+}
+.animate-success-background {
+  animation: successFlash 300ms forwards;
+}
+
+/* Flash a failure */
+@keyframes failureFlash {
+  0% {
+    background: unset;
+  }
+  50% {
+    background: indianred;
+  }
+  100% {
+    background: unset;
+  }
+}
+.animate-failure-background {
+  animation: failureFlash 300ms forwards;
+}
+</style>
