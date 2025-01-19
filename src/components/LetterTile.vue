@@ -31,9 +31,9 @@ defineProps({
     background-color: lightgreen;
   }
   .shuffleLeft {
-    margin-right: 2px;
+    margin-right: 2rem;
   }
   .shuffleRight {
-    margin-left: 2px;
+    margin-left: 2rem;
   }
 </style>

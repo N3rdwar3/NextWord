@@ -17,13 +17,14 @@ let dragStart = (e, index) => {
   store.draggingActiveTile = true;
 }
 let dragLeave = (e) => {
-  if(store.draggingActiveTile){
-    return;
-  }
-  store.activeIndex = null;
+  // if(store.draggingActiveTile){
+  //   return;
+  // }
+  // store.activeIndex = null;
 }
 let droppedOn = (e) => {
-  // dont interact with other active tiles
+  //dont interact with other active tiles
+  console.log('Dropped on child');
   if(store.draggingActiveTile){
     return;
   }
@@ -60,6 +61,8 @@ let draggedOver = (e) => {
   }
 }
 let dragEnd = (e) => {
+  console.log('Drag ended!');
+  console.log(e.dataTransfer.getData('text/plain'));
   store.activeIndex = null;
   store.trashDisabled = true;
   store.draggingActiveTile = false;
