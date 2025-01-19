@@ -5,14 +5,13 @@ import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [
-    vue(),
-    vueDevTools(),
-  ],
+// fix as per : https://github.com/vitejs/vite/discussions/13910
+export default defineConfig(({ mode }) => ({
+  plugins: mode === 'production' ? [vue(),vueDevTools()] : [vue()],
+  base: mode === 'production' ? 'https://n3rdwar3.github.io/NextWord/' : '/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
-})
+}))
