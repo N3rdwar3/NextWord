@@ -16,12 +16,17 @@ export let useGameStateStore = defineStore('game', {
             animateOut: false,
             animateIn: false,
             animateSuccessBackground: false,
-            animateFailureBackground: false
+            animateFailureBackground: false,
+            gameOver: false,
+            maxAttempts: 10
         }
     },
     actions: {
         // index should always be passed
         modify(callback, params){
+            if(this.wordPath.length-2 >= this.maxAttempts){
+                store.gameOver=true;
+            }
             console.log(callback);
             console.log(params);
             if(params.index === null){
@@ -35,7 +40,11 @@ export let useGameStateStore = defineStore('game', {
                 setTimeout(() => {
                     this.animateOut = false;
                     this.animateSuccessBackground = false;
-                    this.updateActiveWord(candidateWord)
+                    this.updateActiveWord(candidateWord);
+                    // check if the game had ended
+                    if(this.activeWord === this.finalWord){
+                        this.gameOver = true;
+                    }
                 }, 350)
             } else {
                 this.animateFailureBackground = true;

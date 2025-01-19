@@ -29,6 +29,7 @@ let droppedOn = (e) => {
     return;
   }
   store.modify('add', {'index': store.activeIndex, 'letter': e.dataTransfer.getData('text/plain')});
+  store.activeIndex = null;
 }
 let draggedOver = (e) => {
   e.preventDefault();
@@ -61,8 +62,6 @@ let draggedOver = (e) => {
   }
 }
 let dragEnd = (e) => {
-  console.log('Drag ended!');
-  console.log(e.dataTransfer.getData('text/plain'));
   store.activeIndex = null;
   store.trashDisabled = true;
   store.draggingActiveTile = false;

@@ -22,6 +22,7 @@ let droppedOn = (e) => {
     }
   }
   store.modify('add', {'index': store.activeIndex, 'letter': e.dataTransfer.getData('text/plain')});
+  store.activeIndex = null;
 }
 
 </script>
