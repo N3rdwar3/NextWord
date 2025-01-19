@@ -13,7 +13,7 @@ store.initGame();
 
 <template>
   <div class="top-div flex flex-col bg-gray-800 py-4 px-1 rounded-lg border-white max-h-screen">
-    <header>
+    <header class="relative">
       <HeaderView @openModal="showModal = true" />
     </header>
     <main>

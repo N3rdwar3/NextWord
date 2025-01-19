@@ -112,7 +112,6 @@ export let useGameStateStore = defineStore('game', {
                 code: 'success'
             }
         },
-
         // update the active word, unset the currently selected index from the active word, add the new word to the list
         updateActiveWord(newWord) {
             this.activeWord = newWord;
