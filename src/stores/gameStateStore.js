@@ -121,7 +121,7 @@ export let useGameStateStore = defineStore('game', {
 
         async initGame() {
             // set todays puzzle
-            const puzzleResponse = await fetch("puzzle.json");
+            const puzzleResponse = await fetch("./puzzle.json");
             const puzzle = await puzzleResponse.json();
             this.startWord = puzzle.startWord.toUpperCase();
             this.activeWord = puzzle.startWord.toUpperCase();
@@ -131,7 +131,7 @@ export let useGameStateStore = defineStore('game', {
             // get dictionary
             if ('caches' in window) {
                 const cache = await caches.open("word-game-cache-v1");
-                const cachedResponse = await cache.match("wordlist.json");
+                const cachedResponse = await cache.match("./wordlist.json");
                 if (cachedResponse) {
                     console.log("Loaded dictionary from cache");
                     this.words = await cachedResponse.json();
@@ -139,7 +139,7 @@ export let useGameStateStore = defineStore('game', {
                 }
             }
             console.log("Fetching dictionary from network");
-            const response = await fetch("wordlist.json");
+            const response = await fetch("./wordlist.json");
             this.words = await response.json();
             this.words = toRaw(this.words);
         },
