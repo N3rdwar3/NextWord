@@ -3,8 +3,12 @@ import HeaderView from '@/components/HeaderView.vue';
 import GameView from '@/components/GameView.vue';
 import HelpModal from "@/components/HelpModal.vue";
 import {ref} from "vue";
+import {useGameStateStore} from "@/stores/gameStateStore.js";
 
 let showModal = ref(false);
+
+let store = useGameStateStore();
+store.initGame();
 </script>
 
 <template>

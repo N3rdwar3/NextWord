@@ -1,14 +1,15 @@
-import {defineStore} from 'pinia'
-
+import {defineStore} from 'pinia';
+import { toRaw } from "vue";
 export let useGameStateStore = defineStore('game', {
     state() {
         return {
-            activeWord: 'THE',
-            finalWord: 'WHERE',
-            startWord: 'THE',
-            wordPath: ['THE'],
+            activeWord: '',
+            finalWord: '',
+            startWord: '',
+            wordPath: [],
+            dictionary: [],
             trashDisabled: true,
-            authorsBest: 5,
+            authorsBest: null,
             activeIndex: null,
             draggingActiveTile: false,
             draggingAlphabetTile: false,
@@ -118,9 +119,37 @@ export let useGameStateStore = defineStore('game', {
             this.wordPath.push(this.activeWord);
         },
 
-        // TODO implement dictionary
+        async initGame() {
+            // set todays puzzle
+            const puzzleResponse = await fetch("/puzzle.json");
+            const puzzle = await puzzleResponse.json();
+            this.startWord = puzzle.startWord.toUpperCase();
+            this.activeWord = puzzle.startWord.toUpperCase();
+            this.finalWord = puzzle.finalWord.toUpperCase();
+            this.authorsBest = +(puzzle.authorsBest);
+            this.wordPath = [puzzle.startWord.toUpperCase()];
+            // get dictionary
+            if ('caches' in window) {
+                const cache = await caches.open("word-game-cache-v1");
+                const cachedResponse = await cache.match("/wordlist.json");
+                if (cachedResponse) {
+                    console.log("Loaded dictionary from cache");
+                    this.words = await cachedResponse.json();
+                    return;
+                }
+            }
+            console.log("Fetching dictionary from network");
+            const response = await fetch("/wordlist.json");
+            this.words = await response.json();
+            this.words = toRaw(this.words);
+        },
+
         isARealWord(newWord) {
-            return true;
+            // get first letter of new Word and length of word
+            let lowerNewWord = newWord.toLowerCase();
+            const firstLetter = lowerNewWord.charAt(0);
+            const wordLength = lowerNewWord.length;
+            return !!(this.words?.[firstLetter]?.[wordLength] ?? []).includes(lowerNewWord);
         }
-    },
+    }
 })

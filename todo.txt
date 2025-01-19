@@ -1,12 +1,3 @@
-#TODO Dictionary research
- - Where to store the 34MB of English words
- - Do Modern Browsers already have a dictionary API built in?
- - How did Wordle do it?...
- - How long will it take to parse (170,000 words 17/18 searches max with Binary Search)
-
-#TODO develop a way to set and fetch new puzzles (decide if we care if people can access ones that aren't for today)
 #TODO populate help dialog
 #TODO css for flex box seems to be changing after adding a 6th letter to the word
 #TODO make a logo
-
-

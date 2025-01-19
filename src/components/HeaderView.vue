@@ -6,12 +6,13 @@ let store = useGameStateStore();
 </script>
 
 <template>
-  <div class="absolute right-4">
-    <RoundButton
-      @click="$emit('openModal')"
-    >?</RoundButton>
-  </div>
+
   <div class="flex justify-center flex-col text-white font-serif text-center">
+    <div class="hidden">
+      <RoundButton
+          @click="$emit('openModal')"
+      >?</RoundButton>
+    </div>
     <span class="font-title">NextWord</span>
     <h1 class="mt-4 mb-1 text-lg">{{ store.finalWord }}</h1>
     <h5 class="text-lg">Author's Best: {{ store.authorsBest }}</h5>
