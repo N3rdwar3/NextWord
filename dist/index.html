@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="https://n3rdwar3.github.io/NextWord/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=aclonica:400" rel="stylesheet"/>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log("Service Worker registered!", reg))
+                .catch(err => console.error("Service Worker registration failed!", err));
+        }
+    </script>
+    <title>Next Word</title>
+  <script type="module" crossorigin src="https://n3rdwar3.github.io/NextWord/assets/index-CmLdV9O8.js"></script>
+  <link rel="stylesheet" crossorigin href="https://n3rdwar3.github.io/NextWord/assets/index-COlNB6ab.css">
+</head>
+<body>
+<div id="app"></div>
+</body>
+</html>
