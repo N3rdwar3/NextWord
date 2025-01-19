@@ -22,15 +22,6 @@ let dragLeave = (e) => {
   // }
   // store.activeIndex = null;
 }
-let droppedOn = (e) => {
-  //dont interact with other active tiles
-  console.log('Dropped on child');
-  if(store.draggingActiveTile){
-    return;
-  }
-  store.modify('add', {'index': store.activeIndex, 'letter': e.dataTransfer.getData('text/plain')});
-  store.activeIndex = null;
-}
 let draggedOver = (e) => {
   e.preventDefault();
   // dont interact with other active tiles
@@ -80,7 +71,6 @@ let dragEnd = (e) => {
         @dragstart="(e) => {dragStart(e, index)}"
         @dragend="dragEnd"
         @dragleave="dragLeave"
-        @drop="droppedOn"
         @dragover="draggedOver"
         @click="() => {store.activeIndex = store.activeIndex === index ? null: index}"
         :letter="letter"

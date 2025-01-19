@@ -5,8 +5,6 @@ import {useGameStateStore} from "@/stores/gameStateStore.js";
 let store = useGameStateStore();
 
 let droppedOn = (e) => {
-  console.log('Dropped on parent');
-  console.log(e);
   if(store.draggingActiveTile){
     return;
   }
@@ -22,7 +20,6 @@ let droppedOn = (e) => {
     }
   }
   store.modify('add', {'index': store.activeIndex, 'letter': e.dataTransfer.getData('text/plain')});
-  store.activeIndex = null;
 }
 
 </script>

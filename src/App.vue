@@ -25,6 +25,6 @@ store.initGame();
     <HelpModal :showHelp="showModal" @closeModal="showModal = false"/>
   </Teleport>
   <Teleport to="body">
-    <GameEndModal @closeModal="store.gameOver=false"/>
+    <GameEndModal @closeModal="store.resetGame()"/>
   </Teleport>
 </template>

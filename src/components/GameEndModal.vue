@@ -14,7 +14,7 @@ let store = useGameStateStore();
   >
     <div v-if="store.gameOver" class="modal-mask">
       <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4">
-        <div v-if="store.wordPath.length-2<store.maxAttempts" class="bg-white rounded-lg shadow-lg w-full max-w-md md:max-w-lg p-6 text-black">
+        <div v-if="store.score<store.maxAttempts" class="bg-white rounded-lg shadow-lg w-full max-w-md md:max-w-lg p-6 text-black">
           <header class="text-lg md:text-xl font-bold text-center border-b pb-2">
             Congratulations!
           </header>
@@ -27,10 +27,10 @@ let store = useGameStateStore();
                 Author's Best: {{ store.authorsBest }}
               </li>
               <li :class="{
-                'bg-gradient-to-r from-green-500 to-green-400 p-2 rounded-lg text-lg': store.wordPath.length-2<=store.authorsBest,
-                'bg-gradient-to-r from-red-500 to-red-400 p-2 rounded-lg text-lg': store.wordPath.length-2>store.authorsBest
+                'bg-gradient-to-r from-green-500 to-green-400 p-2 rounded-lg text-lg': store.score<=store.authorsBest,
+                'bg-gradient-to-r from-red-500 to-red-400 p-2 rounded-lg text-lg': store.score>store.authorsBest
               }">
-                Your Score: {{ store.wordPath.length-2 }}
+                Your Score: {{ store.score }}
               </li>
             </ul>
             <p class="mt-2">Check in tomorrow for a new puzzle!</p>

@@ -18,14 +18,15 @@ export let useGameStateStore = defineStore('game', {
             animateSuccessBackground: false,
             animateFailureBackground: false,
             gameOver: false,
+            score: 0,
             maxAttempts: 10
         }
     },
     actions: {
         // index should always be passed
         modify(callback, params){
-            if(this.wordPath.length-2 >= this.maxAttempts){
-                store.gameOver=true;
+            if(this.score >= this.maxAttempts){
+                this.gameOver=true;
             }
             console.log(callback);
             console.log(params);
@@ -34,12 +35,14 @@ export let useGameStateStore = defineStore('game', {
             }
             let candidateWord = this[callback](params);
             let {result, code} = this.checkIfWordIsValid(candidateWord);
+            this.activeIndex = null;
             if (result === true) {
                 this.animateOut=true;
                 this.animateSuccessBackground = true;
                 setTimeout(() => {
                     this.animateOut = false;
                     this.animateSuccessBackground = false;
+                    this.score++;
                     this.updateActiveWord(candidateWord);
                     // check if the game had ended
                     if(this.activeWord === this.finalWord){
@@ -52,7 +55,6 @@ export let useGameStateStore = defineStore('game', {
                     this.animateFailureBackground = false;
                 }, 350)
             }
-            this.activeIndex = null;
         },
         // replace a letter in the active word at the given index
         replace(params) {
@@ -151,7 +153,13 @@ export let useGameStateStore = defineStore('game', {
             this.words = await response.json();
             this.words = toRaw(this.words);
         },
-
+        resetGame() {
+            this.activeWord = this.startWord;
+            this.wordPath = [this.startWord];
+            this.activeIndex = null;
+            this.gameOver = false;
+            this.score = 0;
+        },
         isARealWord(newWord) {
             // get first letter of new Word and length of word
             let lowerNewWord = newWord.toLowerCase();
