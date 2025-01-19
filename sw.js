@@ -1,6 +1,6 @@
 const CACHE_NAME = "word-game-cache-v1";
 const ASSETS_TO_CACHE = [
-    "/wordlist.json",
+    "./wordlist.json",
 ];
 
 // Install and cache assets
