@@ -6,7 +6,7 @@ let store = useGameStateStore();
 </script>
 
 <template>
-  <div class="flex flex-row-reverse">
+  <div class="absolute right-4">
     <RoundButton
       @click="$emit('openModal')"
     >?</RoundButton>

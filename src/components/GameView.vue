@@ -18,7 +18,7 @@ import WordPath from "@/components/WordPath.vue";
     <section class="flex flex-col flex-grow-1 gap-2">
       <ActiveWord/>
     </section>
-    <section class="flex flex-col">
+    <section class="flex flex-col w-full">
       <Alphabet/>
     </section>
   </div>

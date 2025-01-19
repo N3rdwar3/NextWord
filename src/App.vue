@@ -8,7 +8,7 @@ let showModal = ref(false);
 </script>
 
 <template>
-  <div class="flex flex-col bg-gray-800 p-2 rounded-lg border-white ">
+  <div class="top-div flex flex-col bg-gray-800 py-4 px-1 rounded-lg border-white max-h-screen">
     <header>
       <HeaderView @openModal="showModal = true" />
     </header>
@@ -20,16 +20,3 @@ let showModal = ref(false);
     <HelpModal :showHelp="showModal" @closeModal="showModal = false"/>
   </Teleport>
 </template>
-
-<style scoped>
-html, body {
-  height: 100%;
-  width: 75vw;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-</style>

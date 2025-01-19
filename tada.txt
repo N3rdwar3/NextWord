@@ -8,3 +8,6 @@
 #TODO VERIFY NEW WORDS ARE VALID WORDS (dictionary not done yet)
 #TODO build header
 #TODO add help button/dialog
+#TODO flash messages on error or success of store.modify
+#TODO after success fade tiles into wordlist animation style
+#TODO mobilize drag and drop?
