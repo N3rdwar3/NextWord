@@ -12,6 +12,11 @@ let store = useGameStateStore();
           @click="$emit('openModal')"
       >?</RoundButton>
     </div>
+    <div class="absolute left-4 top-0">
+      <RoundButton
+          @click="store.resetGame()"
+      >⟳</RoundButton>
+    </div>
     <span class="font-title">NextWord</span>
     <h1 class="mt-4 mb-1 text-lg">{{ store.finalWord }}</h1>
     <h5 class="text-lg">Author's Best: {{ store.authorsBest }}</h5>

@@ -28,8 +28,6 @@ export let useGameStateStore = defineStore('game', {
             if(this.score >= this.maxAttempts){
                 this.gameOver=true;
             }
-            console.log(callback);
-            console.log(params);
             if(params.index === null){
                 return
             }
@@ -139,15 +137,6 @@ export let useGameStateStore = defineStore('game', {
             this.authorsBest = +(puzzle.authorsBest);
             this.wordPath = [puzzle.startWord.toUpperCase()];
             // get dictionary
-            if ('caches' in window) {
-                const cache = await caches.open("word-game-cache-v1");
-                const cachedResponse = await cache.match("./wordlist.json");
-                if (cachedResponse) {
-                    console.log("Loaded dictionary from cache");
-                    this.words = await cachedResponse.json();
-                    return;
-                }
-            }
             console.log("Fetching dictionary from network");
             const response = await fetch("./wordlist.json");
             this.words = await response.json();
