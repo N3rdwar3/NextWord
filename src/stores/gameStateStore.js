@@ -129,7 +129,7 @@ export let useGameStateStore = defineStore('game', {
 
         async initGame() {
             // set todays puzzle
-            const puzzleResponse = await fetch("./puzzle.json");
+            const puzzleResponse = await fetch("./puzzle.json?v=2");
             const puzzle = await puzzleResponse.json();
             this.startWord = puzzle.startWord.toUpperCase();
             this.activeWord = puzzle.startWord.toUpperCase();
@@ -138,7 +138,7 @@ export let useGameStateStore = defineStore('game', {
             this.wordPath = [puzzle.startWord.toUpperCase()];
             // get dictionary
             console.log("Fetching dictionary from network");
-            const response = await fetch("./wordlist.json");
+            const response = await fetch("./wordlist.json?v=2");
             this.words = await response.json();
             this.words = toRaw(this.words);
         },
