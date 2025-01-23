@@ -2,11 +2,16 @@
 
 
 $dict = [];
-$wl = fopen("public/wordlist.txt", "r");
+$wl = fopen("wordlist.txt", "r");
 while (!feof($wl)) {
     $word = stream_get_line($wl, 100000, "\n");
     // in this list the first and last letter of each word is a "
     $word = trim($word, '"');
+    // exclude all non a-z
+    $wordReplaced = preg_replace('/[^a-z]/', '', $word);
+    if($wordReplaced !== $word) {
+        continue;
+    }
     if(strlen($word) < 1 || strlen($word) > 9){
         continue;
     }
