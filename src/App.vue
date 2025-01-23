@@ -13,11 +13,11 @@ store.initGame();
 </script>
 
 <template>
-  <div class="top-div flex flex-col bg-gray-800 pt-8 px-1 rounded-lg border-white max-h-screen h-full justify-center">
+  <div class="top-div flex flex-col bg-gray-800 pt-8 px-1 rounded-lg border-white max-h-screen h-full max-w-screen-md w-screen justify-center">
     <header class="relative">
       <HeaderView @openModal="showModal = true" />
     </header>
-    <main>
+    <main class="flex justify-center">
       <GameView/>
     </main>
   </div>
