@@ -8,10 +8,6 @@ let store = useGameStateStore();
 <template>
   <div class="flex flex-col flex-wrap gap-1">
     <div class="mx-4"
-         :class="{
-            'text-green-400 font-title': index===store.authorsBest,
-            'text-red-400': index > store.authorsBest
-          }"
          v-for="(word, index) in store.wordPath"
     ><span
         v-if="index!==0"
