@@ -73,8 +73,6 @@ export let useGameStateStore = defineStore('game', {
         add(params) {
             // this is to avoid casting null to 0
             let {index, letter} = params;
-            console.log('Index', index);
-            console.log('letter', letter);
             let newWord = '';
             for (let i = 0; i < this.activeWord.length; i++) {
                 if (i === +(index)) {
@@ -127,10 +125,22 @@ export let useGameStateStore = defineStore('game', {
             this.wordPath.push(this.activeWord);
         },
 
+        getTodaysDate() {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        },
+
+
         async initGame() {
             // set todays puzzle
-            const puzzleResponse = await fetch("./puzzle.json?v=2");
-            const puzzle = await puzzleResponse.json();
+
+            const puzzleResponse = await fetch("./puzzle.json");
+            const puzzleList = await puzzleResponse.json();
+            const today = this.getTodaysDate();
+            const puzzle = puzzleList[today];
             this.startWord = puzzle.startWord.toUpperCase();
             this.activeWord = puzzle.startWord.toUpperCase();
             this.finalWord = puzzle.finalWord.toUpperCase();
@@ -138,7 +148,7 @@ export let useGameStateStore = defineStore('game', {
             this.wordPath = [puzzle.startWord.toUpperCase()];
             // get dictionary
             console.log("Fetching dictionary from network");
-            const response = await fetch("./wordlist.json?v=2");
+            const response = await fetch("./wordlist.json");
             this.words = await response.json();
             this.words = toRaw(this.words);
         },

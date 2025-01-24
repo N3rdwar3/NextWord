@@ -1,5 +1,12 @@
 {
-  "startWord": "BUT",
-  "finalWord": "MATH",
-  "authorsBest": 4
+  "2025-01-24": {
+    "startWord": "HARD",
+    "finalWord": "SCORE",
+    "authorsBest": 4
+  },
+  "2025-01-25": {
+    "startWord": "NEXT",
+    "finalWord": "WORD",
+    "authorsBest": 8
+  }
 }
