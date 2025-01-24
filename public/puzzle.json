@@ -7,6 +7,56 @@
   "2025-01-25": {
     "startWord": "NEXT",
     "finalWord": "WORD",
-    "authorsBest": 8
+    "authorsBest": 6
+  },
+  "2025-01-26": {
+    "startWord": "PAT",
+    "finalWord": "BEAST",
+    "authorsBest": 4
+  },
+  "2025-01-27": {
+    "startWord": "TRICK",
+    "finalWord": "SKUNK",
+    "authorsBest": 6
+  },
+  "2025-01-28": {
+    "startWord": "JUNK",
+    "finalWord": "SHANK",
+    "authorsBest": 4
+  },
+  "2025-01-29": {
+    "startWord": "BAD",
+    "finalWord": "PLAIN",
+    "authorsBest": 5
+  },
+  "2025-01-30": {
+    "startWord": "THEREIN",
+    "finalWord": "HER",
+    "authorsBest": 5
+  },
+  "2025-01-31": {
+    "startWord": "STING",
+    "finalWord": "HAND",
+    "authorsBest": 5
+  },
+  "2025-02-01": {
+    "startWord": "SPIT",
+    "finalWord": "BROIL",
+    "authorsBest": 6
+  },
+  "2025-02-02": {
+    "startWord": "ICE",
+    "finalWord": "DEPRAVE",
+    "authorsBest": 6
+  },
+  "2025-02-03": {
+    "startWord": "DAD",
+    "finalWord": "FREAK",
+    "authorsBest": 5
+  },
+  "2025-02-04": {
+    "startWord": "START",
+    "finalWord": "PLAIN",
+    "authorsBest": 5
   }
 }
