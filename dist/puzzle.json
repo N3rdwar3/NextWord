@@ -58,5 +58,120 @@
     "startWord": "START",
     "finalWord": "PLAIN",
     "authorsBest": 5
+  },
+  "2025-02-06": {
+    "startWord": "MEND",
+    "finalWord": "FIN",
+    "authorsBest": 4
+  },
+  "2025-02-07": {
+    "startWord": "STOGIE",
+    "finalWord": "STARES",
+    "authorsBest": 4
+  },
+  "2025-02-08": {
+    "startWord": "MUD",
+    "finalWord": "GRANT",
+    "authorsBest": 6
+  },
+  "2025-02-09": {
+    "startWord": "LOVE",
+    "finalWord": "HATE",
+    "authorsBest": 3
+  },
+  "2025-02-10": {
+    "startWord": "TACO",
+    "finalWord": "KART",
+    "authorsBest": 4
+  },
+  "2025-02-11": {
+    "startWord": "BLOOD",
+    "finalWord": "COAX",
+    "authorsBest": 6
+  },
+  "2025-02-12": {
+    "startWord": "ONE",
+    "finalWord": "TWO",
+    "authorsBest": 4
+  },
+  "2025-02-13": {
+    "startWord": "TWO",
+    "finalWord": "THREE",
+    "authorsBest": 5
+  },
+  "2025-02-14": {
+    "startWord": "BLAND",
+    "finalWord": "TRADE",
+    "authorsBest": 5
+  },
+  "2025-02-15": {
+    "startWord": "WONDER",
+    "finalWord": "NAIVE",
+    "authorsBest": 6
+  },
+  "2025-02-16": {
+    "startWord": "BLANK",
+    "finalWord": "DRANK",
+    "authorsBest": 4
+  },
+  "2025-02-17": {
+    "startWord": "BAT",
+    "finalWord": "BOTCHED",
+    "authorsBest": 5
+  },
+  "2025-02-18": {
+    "startWord": "BROWN",
+    "finalWord": "SCREW",
+    "authorsBest": 4
+  },
+  "2025-02-19": {
+    "startWord": "SLEEP",
+    "finalWord": "STREAM",
+    "authorsBest": 5
+  },
+  "2025-02-20": {
+    "startWord": "DREAM",
+    "finalWord": "PLEAD",
+    "authorsBest": 4
+  },
+  "2025-02-21": {
+    "startWord": "SPIN",
+    "finalWord": "TWINS",
+    "authorsBest": 4
+  },
+  "2025-02-22": {
+    "startWord": "SNOW",
+    "finalWord": "CHIMP",
+    "authorsBest": 5
+  },
+  "2025-02-23": {
+    "startWord": "NEWS",
+    "finalWord": "PESTO",
+    "authorsBest": 4
+  },
+  "2025-02-24": {
+    "startWord": "FISH",
+    "finalWord": "CLASP",
+    "authorsBest": 5
+  },
+  "2025-02-25": {
+    "startWord": "SALE",
+    "finalWord": "GLAZE",
+    "authorsBest": 5
+  },
+  "2025-02-26": {
+    "startWord": "PANT",
+    "finalWord": "JOIN",
+    "authorsBest": 4
+  },
+  "2025-02-27": {
+    "startWord": "BAR",
+    "finalWord": "MEANT",
+    "authorsBest": 4
+  },
+  "2025-02-28": {
+    "startWord": "LEAP",
+    "finalWord": "FOUND",
+    "authorsBest": 5
   }
 }
