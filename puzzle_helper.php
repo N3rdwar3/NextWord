@@ -16,51 +16,83 @@ note('You are going to be provided with multiple puzzles and you can confirm or 
 $startDateYMD = text('In Y-m-d format, please enter which date to start generating puzzles from', default: (new \DateTime())->format('Y-m-d'));
 $activeDate = new \DateTime($startDateYMD);
 Puzzle::$wordFriends = json_decode(file_get_contents("wordfriends.json", "rb"), true, 512, JSON_THROW_ON_ERROR);
-$puzzle = new Puzzle($activeDate);
-while (true) {
-    if($puzzle->needsFirstWord()){
-        $startWord = text("Starting Word?");
-        $puzzle->addFirstWord($startWord);
-        continue;
-    }
-    info("On Day: " . $activeDate->format('M d, Y'));
-    $puzzle->printPuzzle();
-    $action = text("Next Action? ", placeholder: 'step(s)/forcestep(fs)/add(a)/back(b)/restart(r)/finish(f)');
 
-    if ($action === 's') {
-        // show available words that come from this word
-        $continue = $puzzle->showAvailableWords(); // wonderful variable name
-        if (!$continue) {
+$mode = text('Manual mode(m) or automatic(a)?');
+if($mode === 'm'){
+    manual($activeDate);
+} if($mode === 'a'){
+    automatic($activeDate);
+}
+
+function manual(DateTime $activeDate){
+    $puzzle = new Puzzle($activeDate);
+    while (true) {
+        if($puzzle->needsFirstWord()){
+            $startWord = text("Starting Word?");
+            $puzzle->addFirstWord($startWord);
             continue;
         }
-        $word = text("Next Word");
-        if ($puzzle->isValid($word)) {
+        info("On Day: " . $activeDate->format('M d, Y'));
+        $puzzle->printPuzzle();
+        $action = text("Next Action? ", placeholder: 'step(s)/forcestep(fs)/add(a)/back(b)/restart(r)/finish(f)');
+
+        if ($action === 's') {
+            // show available words that come from this word
+            $continue = $puzzle->showAvailableWords(); // wonderful variable name
+            if (!$continue) {
+                continue;
+            }
+            $word = text("Next Word");
+            if ($puzzle->isValid($word)) {
+                $puzzle->addWord($word);
+            } else {
+                error('Invalid word!!');
+            }
+        }
+        elseif($action === 'fs') {
+            // this ignores the wordfriends list
+            $word = text("Next Word... make sure its in wordlist.txt and rebuild wordlist.json!!");
             $puzzle->addWord($word);
-        } else {
-            error('Invalid word!!');
+        }
+        elseif ($action === 'a') {
+            $puzzle->addPuzzle();
+            $activeDate->modify('+1 day');
+            $puzzle = new Puzzle($activeDate);
+        }
+        elseif ($action === 'b') {
+            $puzzle->removeLastWord();
+        }
+        elseif ($action === 'r') {
+            $puzzle = new Puzzle($activeDate);
+        }
+        elseif ($action === 'f') {
+            break;
+        }
+        else {
+            error('Invalid action!! (' . $action . ')');
         }
     }
-    elseif($action === 'fs') {
-        // this ignores the wordfriends list
-        $word = text("Next Word... make sure its in wordlist.txt and rebuild wordlist.json!!");
-        $puzzle->addWord($word);
-    }
-    elseif ($action === 'a') {
-        $puzzle->addPuzzle();
-        $activeDate->modify('+1 day');
-        $puzzle = new Puzzle($activeDate);
-    }
-    elseif ($action === 'b') {
-        $puzzle->removeLastWord();
-    }
-    elseif ($action === 'r') {
-        $puzzle = new Puzzle($activeDate);
-    }
-    elseif ($action === 'f') {
-        break;
-    }
-    else {
-        error('Invalid action!! (' . $action . ')');
+}
+function automatic(DateTime $activeDate){
+    $puzzle = new Puzzle($activeDate);
+    while (true) {
+        if($puzzle->generatePuzzle()){
+            $puzzle->printPuzzle();
+            $action = text("Accept(a), Deny(d), Quit(q)?");
+            if($action === 'a'){
+                $puzzle->addPuzzle();
+                $activeDate->modify('+1 day');
+            }
+            elseif($action === 'd'){
+                $puzzle = new Puzzle($activeDate);
+            }
+            elseif($action === 'q'){
+                break;
+            }
+            else{
+                error('Invalid action!! (' . $action . ')');
+            }
+        }
     }
 }
 
