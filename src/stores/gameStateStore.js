@@ -19,7 +19,10 @@ export let useGameStateStore = defineStore('game', {
             animateFailureBackground: false,
             gameOver: false,
             score: 0,
-            maxAttempts: 10
+            maxAttempts: 10,
+            apiUrl: import.meta.env.MODE === 'development'
+                ? '/'
+                : 'https://n3rdwar3.github.io/NextWord/'
         }
     },
     actions: {
@@ -137,7 +140,7 @@ export let useGameStateStore = defineStore('game', {
         async initGame() {
             // set todays puzzle
 
-            const puzzleResponse = await fetch("./puzzle.json");
+            const puzzleResponse = await fetch(this.apiUrl + "puzzle.json");
             const puzzleList = await puzzleResponse.json();
             const today = this.getTodaysDate();
             const puzzle = puzzleList[today];
@@ -148,7 +151,7 @@ export let useGameStateStore = defineStore('game', {
             this.wordPath = [puzzle.startWord.toUpperCase()];
             // get dictionary
             console.log("Fetching dictionary from network");
-            const response = await fetch("./wordlist.json");
+            const response = await fetch(this.apiUrl + "wordlist.json");
             this.words = await response.json();
             this.words = toRaw(this.words);
         },
