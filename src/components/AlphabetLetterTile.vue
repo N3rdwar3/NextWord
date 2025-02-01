@@ -65,7 +65,10 @@ let dragEnd = (e) => {
       @dragleave="toggleReplacement"
       @dragstart="(e) => {dragStart(e,letter)}"
       @dragend="dragEnd"
-      @click="store.modify('replace', {'index': store.activeIndex, 'letter': letter})"
+      @click="store.clickTile(null, letter)"
+      :class="{
+        'active': store.activeLetter===letter
+      }"
   />
 
 </template>

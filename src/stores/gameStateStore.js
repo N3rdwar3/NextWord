@@ -11,6 +11,7 @@ export let useGameStateStore = defineStore('game', {
             trashDisabled: true,
             authorsBest: null,
             activeIndex: null,
+            activeLetter: null,
             draggingActiveTile: false,
             draggingAlphabetTile: false,
             animateOut: false,
@@ -37,6 +38,7 @@ export let useGameStateStore = defineStore('game', {
             let candidateWord = this[callback](params);
             let {result, code} = this.checkIfWordIsValid(candidateWord);
             this.activeIndex = null;
+            this.activeLetter = null;
             if (result === true) {
                 this.animateOut=true;
                 this.animateSuccessBackground = true;
@@ -100,6 +102,70 @@ export let useGameStateStore = defineStore('game', {
                 newWord += this.activeWord[i];
             }
             return newWord;
+        },
+
+        clickTile(index, letter) {
+            // Cases:
+            // 1. ActiveWordTile Selected, Nothing Else Selected
+            // 2. ActiveWordTile Selected, AlphabetTile Already Selected
+            // 3. ActiveWordTile Selected, Another ActiveWordTile was Selected
+            // 4. AlphabetTile Selected, Nothing Else Selected
+            // 5. AlphabetTile Selected, ActiveWordTile Already Selected
+            // 6. AlphabetTile Selected, Another AlphabetTile Already Selected
+
+            // 1. ActiveWordTile Selected, Nothing Else Selected
+            if(index !== null && this.activeLetter === null && this.activeIndex === null){
+                this.activeIndex = index;
+            }
+            // 2. ActiveWordTile Selected, AlphabetTile Already Selected
+            else if(index !== null && this.activeLetter !== null){
+                this.modify(
+                    'replace',
+                    {
+                        'index': index,
+                        'letter': this.activeLetter
+                    })
+            }
+            // 3. ActiveWordTile Selected, Another ActiveWordTile was Selected
+            else if(index !== null && this.activeIndex !== null){
+                if(index === this.activeIndex){
+                    this.activeIndex = null;
+                } else {
+                    this.activeIndex = index;
+                }
+            }
+            // 4. AlphabetTile Selected, Nothing Else Selected
+            else if(letter !== null && this.activeIndex === null && this.activeLetter === null){
+                this.activeLetter = letter;
+            }
+            // 5. AlphabetTile Selected, ActiveWordTile Already Selected
+            else if(letter !== null && this.activeIndex !== null)
+            {
+                this.modify(
+                    'replace',
+                    {
+                        'index': this.activeIndex,
+                        'letter': letter
+                    }
+                )
+            }
+            // 6. AlphabetTile Selected, Another AlphabetTile Already Selected
+            else if(letter !== null && this.activeLetter !== null)
+            {
+                if(this.activeLetter === letter){
+                    this.activeLetter = null;
+                } else {
+                    this.activeLetter = letter;
+                }
+            }
+            else {
+                console.error("How did this happen?", {
+                    activeIndex: this.activeIndex,
+                    activeLetter: this.activeLetter,
+                    index: index,
+                    letter: letter,
+                });
+            }
         },
         // called from each of the modifiers to see if we have a valid new word to add to the list and update our active word
         checkIfWordIsValid(candidateWord) {

@@ -72,12 +72,13 @@ let dragEnd = (e) => {
         @dragend="dragEnd"
         @dragleave="dragLeave"
         @dragover="draggedOver"
-        @click="() => {store.activeIndex = store.activeIndex === index ? null: index}"
+        @click="store.clickTile(index, null)"
         :letter="letter"
         :data-index="dataIndex"
         :class="{
           'fade-out': store.animateOut,
-          'fade-in': store.animateIn
+          'fade-in': store.animateIn,
+          'active': store.activeIndex===index
         }"
     />
   </Transition>
