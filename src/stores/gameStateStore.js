@@ -215,7 +215,7 @@ export let useGameStateStore = defineStore('game', {
             this.showTodaysIntro = true;
             // get dictionary
             console.log("Fetching dictionary from network");
-            const response = await fetch(this.apiUrl + "wordlist.json");
+            const response = await fetch("./wordlist.json");
             this.words = await response.json();
             this.words = toRaw(this.words);
         },
@@ -232,6 +232,13 @@ export let useGameStateStore = defineStore('game', {
             const firstLetter = lowerNewWord.charAt(0);
             const wordLength = lowerNewWord.length;
             return !!(this.words?.[firstLetter]?.[wordLength] ?? []).includes(lowerNewWord);
+        },
+        revertActiveWord(word, index){
+            this.wordPath = this.wordPath.slice(0, index+1);
+            this.activeWord = word;
+            this.activeIndex = null;
+            this.activeLetter = null;
+            this.score = index;
         }
     }
 })
