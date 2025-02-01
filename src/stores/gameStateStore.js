@@ -19,6 +19,7 @@ export let useGameStateStore = defineStore('game', {
             animateSuccessBackground: false,
             animateFailureBackground: false,
             gameOver: false,
+            showTodaysIntro: false,
             score: 0,
             maxAttempts: 10,
             apiUrl: import.meta.env.MODE === 'development'
@@ -103,7 +104,6 @@ export let useGameStateStore = defineStore('game', {
             }
             return newWord;
         },
-
         clickTile(index, letter) {
             // Cases:
             // 1. ActiveWordTile Selected, Nothing Else Selected
@@ -193,7 +193,6 @@ export let useGameStateStore = defineStore('game', {
             this.activeWord = newWord;
             this.wordPath.push(this.activeWord);
         },
-
         getTodaysDate() {
             const today = new Date();
             const year = today.getFullYear();
@@ -201,8 +200,6 @@ export let useGameStateStore = defineStore('game', {
             const day = String(today.getDate()).padStart(2, '0');
             return `${year}-${month}-${day}`;
         },
-
-
         async initGame() {
             // set todays puzzle
 
@@ -215,6 +212,7 @@ export let useGameStateStore = defineStore('game', {
             this.finalWord = puzzle.finalWord.toUpperCase();
             this.authorsBest = +(puzzle.authorsBest);
             this.wordPath = [puzzle.startWord.toUpperCase()];
+            this.showTodaysIntro = true;
             // get dictionary
             console.log("Fetching dictionary from network");
             const response = await fetch(this.apiUrl + "wordlist.json");

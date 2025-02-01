@@ -5,6 +5,7 @@ import HelpModal from "@/components/HelpModal.vue";
 import {ref} from "vue";
 import {useGameStateStore} from "@/stores/gameStateStore.js";
 import GameEndModal from "@/components/GameEndModal.vue";
+import IntroModal from "@/components/IntroModal.vue";
 
 let showModal = ref(false);
 
@@ -21,6 +22,9 @@ store.initGame();
       <GameView/>
     </main>
   </div>
+  <Teleport to="body">
+    <IntroModal @closeModal="store.showTodaysIntro = false"/>
+  </Teleport>
   <Teleport to="body">
     <HelpModal :showHelp="showModal" @closeModal="showModal = false"/>
   </Teleport>
