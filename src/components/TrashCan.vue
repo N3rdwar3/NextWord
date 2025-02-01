@@ -7,21 +7,22 @@ let dragOver = (e) => {
   }
 }
 let dragEnter = (e) => {
-  // make trash can shake or something?
+  e.target.classList.add('hover');
 }
 let dragLeave = (e) => {
-  // make trash can stop shaking?
+  e.target.classList.remove('hover');
 }
 let dropped = (e) => {
   store.modify('remove', {'index': store.activeIndex});
+  e.target.classList.remove('hover');
 }
 </script>
 
 <template>
   <div
-    class="w-full rounded-lg text-center text-lg text-white items-center p-2"
+    class="absolute w-full h-full rounded-lg text-center text-gray-500 items-center p-2 z-10
+    border border-2 border-gray-600 place-content-center"
     :class="{
-      'bg-red-700 shake-trashcan': !store.trashDisabled,
       'hidden': store.trashDisabled
     }"
     @dragenter="dragEnter"
@@ -41,7 +42,13 @@ let dropped = (e) => {
   75% { transform: rotate(-2.5deg); }
   100% { transform: rotate(0deg); }
 }
-.shake-trashcan {
-  animation: tilt-shaking 500ms infinite;
+div {
+  font-size: 10rem;
+  background-color: rgba(100, 100, 100, 80);
+  opacity: 0.95;
+}
+.hover {
+  background: white;
+  transition: background-color ease 300ms ;
 }
 </style>

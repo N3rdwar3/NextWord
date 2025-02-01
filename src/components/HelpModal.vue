@@ -33,7 +33,7 @@ defineProps({
                 or dragging it onto a tile in the alphabet.
               </li>
               <li>
-                Drag a letter up into the delete button, which is only visible while dragging the tile.
+                Drag a letter down into the delete button, which is only visible while dragging the tile.
               </li>
             </ol>
             <p class="mt-2">At each step along the way, you must form an English word. Each move adds one to your score.</p>

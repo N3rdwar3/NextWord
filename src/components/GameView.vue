@@ -9,9 +9,6 @@ import WordPath from "@/components/WordPath.vue";
 
 <template>
   <div class="flex flex-col w-full p-4 gap-2 max-w-md">
-    <section class="flex justify-end align-top">
-      <TrashCan />
-    </section>
     <section class="flex w-full border-light border-2 p-2 rounded-lg gap-2 h-32">
       <WordPath />
     </section>
