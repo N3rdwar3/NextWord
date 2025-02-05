@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="https://n3rdwar3.github.io/NextWord/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, minimal-ui">
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=aclonica:400" rel="stylesheet"/>
     <meta http-equiv="content-type" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="refresh" content="no-cache">
+    <!-- Set up basic meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- PWA manifest -->
+    <link rel="manifest" href="https://n3rdwar3.github.io/NextWord/assets/manifest.json">
+
     <title>Next Word</title>
   <script type="module" crossorigin src="https://n3rdwar3.github.io/NextWord/assets/index.js"></script>
   <link rel="stylesheet" crossorigin href="https://n3rdwar3.github.io/NextWord/assets/index.css">
@@ -21,5 +28,8 @@
     body, html {
         height: 100vh;
         max-height: 100vh;
+    },
+    body {
+        padding-bottom: env(safe-area-inset-bottom); /* For iPhone X/11/12/13 */
     }
 </style>
