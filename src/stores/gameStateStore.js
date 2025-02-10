@@ -7,7 +7,6 @@ export let useGameStateStore = defineStore('game', {
             finalWord: '',
             startWord: '',
             wordPath: [],
-            dictionary: [],
             trashDisabled: true,
             authorsBest: null,
             activeIndex: null,
@@ -23,13 +22,13 @@ export let useGameStateStore = defineStore('game', {
             score: 0,
             maxAttempts: 10,
             apiUrl: import.meta.env.MODE === 'development'
-                ? '/'
-                : 'https://n3rdwar3.github.io/NextWord/'
+                ? 'http://nextword.dev.ca:8888'
+                : 'https://nextword.nerdware.ca'
         }
     },
     actions: {
         // index should always be passed
-        modify(callback, params){
+        async modify(callback, params){
             if(this.score >= this.maxAttempts){
                 this.gameOver=true;
             }
@@ -37,7 +36,7 @@ export let useGameStateStore = defineStore('game', {
                 return
             }
             let candidateWord = this[callback](params);
-            let {result, code} = this.checkIfWordIsValid(candidateWord);
+            let {result, code} = await this.checkIfWordIsValid(candidateWord);
             this.activeIndex = null;
             this.activeLetter = null;
             if (result === true) {
@@ -168,7 +167,7 @@ export let useGameStateStore = defineStore('game', {
             }
         },
         // called from each of the modifiers to see if we have a valid new word to add to the list and update our active word
-        checkIfWordIsValid(candidateWord) {
+        async checkIfWordIsValid(candidateWord) {
             // word must be new
             if (this.activeWord === candidateWord) {
                 return {
@@ -177,7 +176,8 @@ export let useGameStateStore = defineStore('game', {
                 }
             }
             // check dict
-            if (!this.isARealWord(candidateWord)) {
+            const isRealWord = await this.isARealWord(candidateWord);
+            if (!isRealWord) {
                 return {
                     result: false,
                     code: 'no-exist',
@@ -193,31 +193,18 @@ export let useGameStateStore = defineStore('game', {
             this.activeWord = newWord;
             this.wordPath.push(this.activeWord);
         },
-        getTodaysDate() {
-            const today = new Date();
-            const year = today.getFullYear();
-            const month = String(today.getMonth() + 1).padStart(2, '0');
-            const day = String(today.getDate()).padStart(2, '0');
-            return `${year}-${month}-${day}`;
-        },
         async initGame() {
             // set todays puzzle
 
-            const puzzleResponse = await fetch(this.apiUrl + "puzzle.json");
-            const puzzleList = await puzzleResponse.json();
-            const today = this.getTodaysDate();
-            const puzzle = puzzleList[today];
-            this.startWord = puzzle.startWord.toUpperCase();
-            this.activeWord = puzzle.startWord.toUpperCase();
-            this.finalWord = puzzle.finalWord.toUpperCase();
-            this.authorsBest = +(puzzle.authorsBest);
-            this.wordPath = [puzzle.startWord.toUpperCase()];
+            const puzzleResponse = await fetch(this.apiUrl + "/puzzle");
+            const puzzleJson = await puzzleResponse.json();
+            const puzzle = puzzleJson[0];
+            this.startWord = puzzle.start_word.toUpperCase();
+            this.activeWord = puzzle.start_word.toUpperCase();
+            this.finalWord = puzzle.final_word.toUpperCase();
+            this.authorsBest = +(puzzle.top_score);
+            this.wordPath = [puzzle.start_word.toUpperCase()];
             this.showTodaysIntro = true;
-            // get dictionary
-            console.log("Fetching dictionary from network");
-            const response = await fetch("./wordlist.json");
-            this.words = await response.json();
-            this.words = toRaw(this.words);
         },
         resetGame() {
             this.activeWord = this.startWord;
@@ -226,12 +213,12 @@ export let useGameStateStore = defineStore('game', {
             this.gameOver = false;
             this.score = 0;
         },
-        isARealWord(newWord) {
+        async isARealWord(newWord) {
             // get first letter of new Word and length of word
             let lowerNewWord = newWord.toLowerCase();
-            const firstLetter = lowerNewWord.charAt(0);
-            const wordLength = lowerNewWord.length;
-            return !!(this.words?.[firstLetter]?.[wordLength] ?? []).includes(lowerNewWord);
+            const wordResponse = await fetch(this.apiUrl + "/word?proposed=" + lowerNewWord);
+            const wordJson = await wordResponse.json();
+            return wordJson.valid;
         },
         revertActiveWord(word, index){
             this.wordPath = this.wordPath.slice(0, index+1);
